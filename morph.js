@@ -62,18 +62,20 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 function size() {
-   /* var canvas = document.querySelector('canvas'),
+   var canvas = document.querySelector('canvas'),
         container = document.getElementById('canvas'),
         aspect = canvas.width / canvas.height,
         caspect = container.clientWidth / container.clientHeight,
         r = (aspect > caspect) ? (canvas.width / container.clientWidth) : (canvas.height / container.clientHeight);
-    if (aspect < caspect) {
+    if (aspect > caspect) {
         canvas.style.width = '100%';
         canvas.style.height = canvas.height / container.clientHeight * 100 + '%';
+        console.log(canvas.height / container.clientHeight * 100 + '%')
     } else {
         canvas.style.height = '100%';
         canvas.style.width = canvas.width / container.clientWidth * 100 + '%';
-    }*/
+        console.log(canvas.width / container.clientWidth * 100 + '%');
+    }
 }
 
 window.addEventListener('resize', size);
