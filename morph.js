@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
   update();
   document.getElementById('canvas').appendChild(morpher.canvas);
-  setTimeout(size, 2000);
+  setTimeout(size, 100);
   setInterval(update, 1000);
-}, 20000);
+}, 100);
 
   var last = '', map = {
     labour: 1,
