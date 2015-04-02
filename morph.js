@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', function(){
   var last = '', map = {
     labour: 1,
     tory: 0,
-    libdem: 3,
-    green: 2,
+    libdem: 2,
+    green: 3,
     snp: 5,
     cymru: 6,
     ukip: 4
