@@ -1,6 +1,9 @@
 body {
 	overflow: hidden;
 }
+img {
+	opacity: 0;
+}
 ul {
 	position: absolute;
 	left: 0;
