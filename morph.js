@@ -72,7 +72,7 @@ function size() {
         canvas.style.height = container.clientWidth / aspect + 'px';
     } else {
         canvas.style.height = '100%';
-        canvas.style.width = container.clientHeight / caspect + 'px';
+        canvas.style.width = container.clientHeight / aspect + 'px';
     }
 }
 
