@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
     for (var p in map)
-        document.getElementById(p).addEventListener('change', update));
+        document.getElementById(p).addEventListener('change', update);
 
   update();
   document.getElementById('canvas').appendChild(morpher.canvas);
