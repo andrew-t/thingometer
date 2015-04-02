@@ -69,12 +69,12 @@ function size() {
         r = (aspect > caspect) ? (canvas.width / container.clientWidth) : (canvas.height / container.clientHeight);
     if (aspect > caspect) {
         canvas.style.width = '100%';
-        canvas.style.height = canvas.height / container.clientHeight * 100 + '%';
-        console.log(canvas.height / container.clientHeight * 100 + '%')
+        canvas.style.height = container.clientHeight / canvas.height * 100 + '%';
+        console.log(container.clientHeight / canvas.height * 100 + '%')
     } else {
         canvas.style.height = '100%';
-        canvas.style.width = canvas.width / container.clientWidth * 100 + '%';
-        console.log(canvas.width / container.clientWidth * 100 + '%');
+        canvas.style.width = container.clientWidth / canvas.width * 100 + '%';
+        console.log(container.clientWidth / canvas.width * 100 + '%');
     }
 }
 
