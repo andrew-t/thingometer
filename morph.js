@@ -69,10 +69,10 @@ function size() {
         r = (aspect > caspect) ? (canvas.width / container.clientWidth) : (canvas.height / container.clientHeight);
     if (aspect > caspect) {
         canvas.style.width = '100%';
-        canvas.style.height = (aspect / caspect) * container.clientWidth + 'px';
+        canvas.style.height = container.clientWidth / aspect + 'px';
     } else {
         canvas.style.height = '100%';
-        canvas.style.width = (caspect / aspect) * container.clientHeight + 'px';
+        canvas.style.width = container.clientHeight / caspect + 'px';
     }
 }
 
