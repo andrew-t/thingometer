@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function(){
     setTimeout(function() {
   update();
   document.getElementById('canvas').appendChild(morpher.canvas);
-  setTimeout(size, 100);
+  setTimeout(size, 2000);
   setInterval(update, 1000);
 }, 100);
 
