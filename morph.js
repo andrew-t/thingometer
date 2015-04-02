@@ -26,14 +26,14 @@ document.addEventListener('DOMContentLoaded', function(){
             });
     });
 
+    setTimeout(function() {
    morpher = new Morpher(json);
 
-    setTimeout(function() {
   update();
   document.getElementById('canvas').appendChild(morpher.canvas);
   setTimeout(size, 2000);
   setInterval(update, 1000);
-}, 2000);
+}, 20000);
 
   var last = '', map = {
     labour: 1,
