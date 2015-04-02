@@ -35,10 +35,13 @@ document.addEventListener('DOMContentLoaded', function(){
         document.getElementById(p).value = 100 * l[map[p]];
   }
 
+    for (var p in map)
+        document.getElementById(p).addEventListener('change', update));
+
   update();
   document.getElementById('canvas').appendChild(morpher.canvas);
   setTimeout(size, 100);
-  setInterval(update, 1000);
+  //setInterval(update, 1000);
 }, 100);
 
   var last = '', map = {
