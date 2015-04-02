@@ -29,6 +29,12 @@ document.addEventListener('DOMContentLoaded', function(){
     setTimeout(function() {
    morpher = new Morpher(json);
 
+  if (document.location.hash) {
+    var l = JSON.parse(document.location.hash.substr(1));
+    for (var p in map)
+        document.getElementById(p).value = 100 * l[map[p]];
+  }
+
   update();
   document.getElementById('canvas').appendChild(morpher.canvas);
   setTimeout(size, 100);
@@ -57,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function(){
         e.innerHTML = e.innerHTML.replace(/ \(.*$/, '') + ' (' + Math.round(v[map[p]] * 100) + '%)';
     }
     last = JSON.stringify(v);
+    document.location.hash = '#' + last;
     morpher.set(v);
   }
 });
