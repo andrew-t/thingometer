@@ -63,7 +63,8 @@ document.addEventListener('DOMContentLoaded', function(){
         return;
     for (var p in map) {
         var e = document.getElementById('l-' + p);
-        e.innerHTML = e.innerHTML.replace(/ \(.*$/, '') + ' (' + Math.round(v[map[p]] * 100) + '%)';
+        e.innerHTML = e.innerHTML.replace(/ \(.*$/, '') + ' (' +
+            (v[map[p]] ? Math.round(v[map[p]] * 100) + '%)' : "can't win here!)");
     }
     last = JSON.stringify(v);
     document.location.hash = '#' + last;
