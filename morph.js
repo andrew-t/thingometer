@@ -1,5 +1,6 @@
+var morpher;
 document.addEventListener('DOMContentLoaded', function(){
-    var morpher;
+
     var json = {"images":[
 
     {"points":[{"x":258,"y":330},{"x":285,"y":316},{"x":322,"y":329},{"x":291,"y":335},{"x":393,"y":326},{"x":433,"y":313},{"x":433,"y":333},{"x":466,"y":327},{"x":387,"y":371},{"x":405,"y":415},{"x":336,"y":372},{"x":321,"y":429},{"x":355,"y":277},{"x":241,"y":292},{"x":287,"y":291},{"x":323,"y":301},{"x":239,"y":407},{"x":281,"y":449},{"x":314,"y":410},{"x":413,"y":399},{"x":293,"y":500},{"x":312,"y":483},{"x":400,"y":296},{"x":436,"y":289},{"x":471,"y":301},{"x":361,"y":434},{"x":361,"y":486},{"x":401,"y":476},{"x":420,"y":485},{"x":437,"y":454},{"x":199,"y":431},{"x":506,"y":418},{"x":467,"y":399},{"x":338,"y":540},{"x":376,"y":539},{"x":354,"y":569},{"x":334,"y":601},{"x":381,"y":603},{"x":276,"y":568},{"x":232,"y":513},{"x":442,"y":573},{"x":486,"y":496},{"x":347,"y":668},{"x":298,"y":639},{"x":255,"y":597},{"x":401,"y":633},{"x":491,"y":503},{"x":238,"y":547},{"x":458,"y":582},{"x":255,"y":781},{"x":458,"y":779},{"x":297,"y":696},{"x":379,"y":690},{"x":331,"y":754},{"x":370,"y":751},{"x":295,"y":941},{"x":398,"y":941},{"x":248,"y":943},{"x":416,"y":942},{"x":232,"y":629},{"x":510,"y":551},{"x":180,"y":413},{"x":167,"y":341},{"x":159,"y":300},{"x":193,"y":354},{"x":354,"y":125},{"x":518,"y":398},{"x":524,"y":335},{"x":531,"y":296},{"x":501,"y":332},{"x":441,"y":116},{"x":480.08213824286827,"y":181.5419933329835},{"x":495.80752161702713,"y":263.3177802338583},{"x":257,"y":109},{"x":202,"y":156},{"x":191,"y":278},{"x":456,"y":56},{"x":357,"y":32},{"x":275,"y":25},{"x":161,"y":125},{"x":155,"y":256},{"x":551,"y":231},{"x":541,"y":145},{"x":580,"y":583},{"x":634,"y":678},{"x":707.3333129882812,"y":612},{"x":706.3333129882812,"y":947},{"x":212,"y":607},{"x":111,"y":700},{"x":144,"y":740},{"x":112,"y":773},{"x":128,"y":939},{"x":24,"y":942},{"x":21,"y":684},{"x":591.3333129882812,"y":726},{"x":639.3333129882812,"y":756},{"x":205,"y":67},{"x":519,"y":83},{"x":550,"y":945}],"src":"cameron.jpg","x":0,"y":0},
@@ -43,8 +44,9 @@ document.addEventListener('DOMContentLoaded', function(){
   setTimeout(size, 100);
   //setInterval(update, 1000);
 }, 100);
+});
 
-  var last = '', map = {
+var updateTimer, last = '', map = {
     labour: 1,
     tory: 0,
     libdem: 2,
@@ -53,24 +55,26 @@ document.addEventListener('DOMContentLoaded', function(){
     cymru: 6,
     ukip: 4
   };
-
-  function update() {
-    var v = [], t = 0, i = 0;
-    for (var p in map)
-        t += v[map[p]] = parseInt(document.getElementById(p).value, 10);
-    v = v.map(function(n) { return n/t; });
-    if (JSON.stringify(v) == last)
-        return;
-    for (var p in map) {
-        var e = document.getElementById('l-' + p);
-        e.innerHTML = e.innerHTML.replace(/ \(.*$/, '') + ' (' +
-            (v[map[p]] ? Math.round(v[map[p]] * 100) + '%)' : "can't win here!)");
-    }
-    last = JSON.stringify(v);
-    document.location.hash = '#' + last;
-    morpher.set(v);
-  }
-});
+function update() {
+  if (!updateTimer)
+      updateTimer = setTimeout(function() {
+          updateTimer = null;
+          var v = [], t = 0, i = 0;
+          for (var p in map)
+              t += v[map[p]] = parseInt(document.getElementById(p).value, 10);
+          v = v.map(function(n) { return n/t; });
+          if (JSON.stringify(v) == last)
+              return;
+          for (var p in map) {
+              var e = document.getElementById('l-' + p);
+              e.innerHTML = e.innerHTML.replace(/ \(.*$/, '') + ' (' +
+                  (v[map[p]] ? Math.round(v[map[p]] * 100) + '%)' : "can't win here!)");
+          }
+          last = JSON.stringify(v);
+          document.location.hash = '#' + last;
+          morpher.set(v);
+      }, 100);
+}
 
 function size() {
    var canvas = document.querySelector('canvas'),

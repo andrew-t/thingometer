@@ -4,7 +4,7 @@ body {
 img {
 	opacity: 0;
 }
-ul {
+#sliders {
 	position: absolute;
 	left: 0;
 	bottom: 0;
@@ -17,16 +17,17 @@ ul {
 	display: flex;
 	flex-direction: column;
 }
+#sliders li {
+	flex: 1;
+	font-size: 1.5em;
+}
 li {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	display: block;
-	width: 100%;
-	flex: 1;
-	font-size: 1.5em;
 }
-li.credits {
+li.credits,
+li.options {
 	flex: 0;
 }
 a {
@@ -64,4 +65,55 @@ input {
 }
 canvas {
 	display: inline-block;
+}
+#poll {
+	background: #00f;
+	color: white;
+	font-family: sans-serif;
+	box-shadow: 0 -.5em 1em rgba(0,0,0,.25) inset;
+	padding: 1em;
+	border-radius: .5em;
+}
+#poll:hover {
+	background: #66f;
+	text-decoration: none;
+}
+#poll-window {
+	margin: 0;
+	padding: 2em;
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: calc(30% - 4em);
+	background: white;
+	overflow: auto;
+}
+#poll-window:not(.hidden) ~ #canvas {
+	right: 30%;
+}
+#poll-window li {
+	cursor: pointer;
+	color: blue;
+}
+#poll-window li:hover {
+	text-decoration: underline;
+}
+.hidden {
+	display: none;
+}
+.loading {
+	background: url('img/spinner.gif');
+}
+.loading * {
+	display: none;
+}
+#close-polls {
+	position: absolute;
+	top: 2em;
+	right: 2em;
+	font-size: 1.5em;
+}
+#close-polls:hover {
+	text-decoration: none;
 }
