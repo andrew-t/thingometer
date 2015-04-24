@@ -31,7 +31,9 @@ document.addEventListener('DOMContentLoaded', function(){
    morpher = new Morpher(json);
 
   if (document.location.hash) {
-    var l = JSON.parse(document.location.hash.substr(1));
+    var state = document.location.hash.substr(1);
+    if (!/\]$/.test(state)) start += ']';
+    var l = JSON.parse(state);
     for (var p in map)
         document.getElementById(p).value = 100 * l[map[p]];
   }
