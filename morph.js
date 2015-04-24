@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   if (document.location.hash) {
     var state = document.location.hash.substr(1);
-    if (!/\]$/.test(state)) start += ']';
+    if (!/\]$/.test(state)) state += ']';
     var l = JSON.parse(state);
     for (var p in map)
         document.getElementById(p).value = 100 * l[map[p]];
